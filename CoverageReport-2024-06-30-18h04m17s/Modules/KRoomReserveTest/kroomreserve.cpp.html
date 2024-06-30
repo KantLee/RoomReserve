@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>kroomreserve.cpp</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+    <body onload="prettyPrint()">
+        <h4></h4>
+        <pre class="prettyprint lang-cpp linenums">
+ï»¿#include "kroomreserve.h"
+
+KRoomReserve::KRoomReserve(QWidget *parent)
+<span style = "background-color:#dfd">    : QWidget(parent)
+    , ui(new Ui::KRoomReserveClass())
+    ,m_database(KDataBase::getInstance())
+    ,m_adminWindow(nullptr)
+    ,m_approvalWindow(nullptr)
+    ,m_coderWindow(nullptr)
+{
+    ui-&gt;setupUi(this);</span>
+    // å ä¸è¿å¥ï¼å¦åQWidgetä¸æ¾ç¤ºèæ¯
+<span style = "background-color:#dfd">    setAttribute(Qt::WA_StyledBackground, true);
+    initDataBase();
+}</span>
+
+KRoomReserve::~KRoomReserve()
+<span style = "background-color:#dfd">{
+    delete ui;
+    m_database.disconnectDataBase();
+    if (m_adminWindow)</span>
+    {
+<span style = "background-color:#dfd">        delete m_adminWindow;
+        m_adminWindow = nullptr;</span>
+    }
+<span style = "background-color:#dfd">    if (m_approvalWindow)</span>
+    {
+<span style = "background-color:#fdd">        delete m_approvalWindow;
+        m_approvalWindow = nullptr;</span>
+    }
+<span style = "background-color:#dfd">    if (m_coderWindow)</span>
+    {
+<span style = "background-color:#fdd">        delete m_coderWindow;
+        m_coderWindow = nullptr;</span>
+    }
+<span style = "background-color:#dfd">}</span>
+
+void KRoomReserve::initDataBase()
+<span style = "background-color:#dfd">{
+    if (!m_database.connectDataBase())</span>
+    {
+<span style = "background-color:#fdd">        QMessageBox::warning(this, "éè¯¯", "æ°æ®åºè¿æ¥å¤±è´¥");
+        return;</span>
+    }
+    // åå»ºæ°æ®è¡¨
+<span style = "background-color:#dfd">    m_database.createTable();</span>
+
+    // é»è®¤çç®¡çåè´¦æ·æ¯admin
+<span style = "background-color:#dfd">    if (!m_database.isExistUser("admin"))</span>
+    {
+<span style = "background-color:#fdd">        QString adminPassword = m_database.encryptPassword("admin");    // å å¯å¯ç 
+        KUserInfo admin = { "admin","è¶çº§ç®¡çå", adminPassword, "ç³»ç»ç®¡çå" };
+        if (!m_database.insertUserData(admin))
+            QMessageBox::warning(this, "éè¯¯", "ç®¡çååå§åå¤±è´¥");
+    }</span>
+    // åå»ºä¼è®®å®¤ä¿¡æ¯
+<span style = "background-color:#dfd">    QList&lt;KRoomInfo&gt; rooms;
+    rooms &lt;&lt; KRoomInfo{ "ä¼è®®å®¤001",14,true };
+    rooms &lt;&lt; KRoomInfo{ "ä¼è®®å®¤002",8,false };
+    rooms &lt;&lt; KRoomInfo{ "ä¼è®®å®¤003",10,false };
+    rooms &lt;&lt; KRoomInfo{ "ä¼è®®å®¤004",6,false  };
+    rooms &lt;&lt; KRoomInfo{ "ä¼è®®å®¤005",18,true };
+    rooms &lt;&lt; KRoomInfo{ "ä¼è®®å®¤006",150,true };
+    if (!m_database.isExistRooms())</span>
+    {
+<span style = "background-color:#fdd">        if (!m_database.initMeetingRoom(rooms))
+            QMessageBox::warning(this, "éè¯¯", "ä¼è®®å®¤åå§åå¤±è´¥");</span>
+    }
+<span style = "background-color:#dfd">}</span>
+
+void KRoomReserve::on_exitButton_clicked()
+<span style = "background-color:#fdd">{
+    close();
+}</span>
+
+void KRoomReserve::on_loginButton_clicked()
+<span style = "background-color:#dfd">{
+    QString role = ui-&gt;comboBoxIdentity-&gt;currentText();
+    QString userName = ui-&gt;userName-&gt;text();
+    QString password = ui-&gt;password-&gt;text();
+    if (m_database.isExistUser(userName))</span>
+    {
+<span style = "background-color:#dfd">        if (m_database.getUserRole(userName) == role)</span>
+        {
+<span style = "background-color:#dfd">            if (m_database.getUserPassword(userName) == m_database.encryptPassword(password))</span>
+            {
+<span style = "background-color:#dfd">                if (role == "ç åäººå")</span>
+                {
+<span style = "background-color:#fdd">                    m_coderWindow = new KCoderWidget(userName);
+                    connect(m_coderWindow, &amp;KCoderWidget::logout, this, &amp;KRoomReserve::show);
+                    m_coderWindow-&gt;show();
+                    this-&gt;hide();
+                }</span>
+<span style = "background-color:#dfd">                else if (role == "è¡æ¿äººå")</span>
+                {
+<span style = "background-color:#fdd">                    m_approvalWindow = new KApprovalWidget();
+                    connect(m_approvalWindow, &amp;KApprovalWidget::logout, this, &amp;KRoomReserve::show);
+                    m_approvalWindow-&gt;show();
+                    this-&gt;hide();
+                }</span>
+                else
+                {
+<span style = "background-color:#dfd">                    m_adminWindow = new KAdminWidget();
+                    connect(m_adminWindow, &amp;KAdminWidget::logout, this, &amp;KRoomReserve::show);
+                    m_adminWindow-&gt;show();
+                    this-&gt;hide();</span>
+                }
+<span style = "background-color:#dfd">            }</span>
+            else
+            {
+<span style = "background-color:#fdd">                QMessageBox::warning(this, "éè¯¯", "å¯ç éè¯¯");</span>
+            }
+<span style = "background-color:#dfd">        }</span>
+        else
+        {
+<span style = "background-color:#fdd">            QMessageBox::warning(this, "éè¯¯", "è¯¥ç¨æ·èº«ä»½ä¸æ¯" + role);</span>
+        }
+<span style = "background-color:#dfd">    }</span>
+    else
+    {
+<span style = "background-color:#fdd">        QMessageBox::warning(this, "éè¯¯", "è¯¥ç¨æ·ä¸å­å¨");</span>
+    }
+<span style = "background-color:#dfd">}</span></pre>
+        <hr />
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th align="center">
+                        <small>Generated by</small>
+                        <a href="https://github.com/OpenCppCoverage/OpenCppCoverage/releases">
+                            <strong>OpenCppCoverage (Version: 0.9.9.0)</strong>
+                        </a>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </body>
+</html>

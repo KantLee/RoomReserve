@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>ui_kapprovalwidget.h</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+    <body onload="prettyPrint()">
+        <h4></h4>
+        <pre class="prettyprint lang-cpp linenums">
+/********************************************************************************
+** Form generated from reading UI file 'kapprovalwidget.ui'
+**
+** Created by: Qt User Interface Compiler version 5.9.3
+**
+** WARNING! All changes made in this file will be lost when recompiling UI file!
+********************************************************************************/
+
+#ifndef UI_KAPPROVALWIDGET_H
+#define UI_KAPPROVALWIDGET_H
+
+#include &lt;QtCore/QVariant&gt;
+#include &lt;QtWidgets/QAction&gt;
+#include &lt;QtWidgets/QApplication&gt;
+#include &lt;QtWidgets/QButtonGroup&gt;
+#include &lt;QtWidgets/QGroupBox&gt;
+#include &lt;QtWidgets/QHBoxLayout&gt;
+#include &lt;QtWidgets/QHeaderView&gt;
+#include &lt;QtWidgets/QListWidget&gt;
+#include &lt;QtWidgets/QPushButton&gt;
+#include &lt;QtWidgets/QTextBrowser&gt;
+#include &lt;QtWidgets/QVBoxLayout&gt;
+#include &lt;QtWidgets/QWidget&gt;
+
+QT_BEGIN_NAMESPACE
+
+class Ui_KApprovalWidget
+{
+public:
+    QVBoxLayout *verticalLayout_3;
+    QHBoxLayout *horizontalLayout_2;
+    QGroupBox *groupBox;
+    QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout_3;
+    QPushButton *showAllReservation;
+    QPushButton *logout;
+    QTextBrowser *textBrowserAllReserve;
+    QGroupBox *groupBox_2;
+    QVBoxLayout *verticalLayout_2;
+    QPushButton *showApprovalReserve;
+    QListWidget *listWidgetApprovalReserve;
+    QHBoxLayout *horizontalLayout;
+    QPushButton *agreeReserve;
+    QPushButton *refuseReserve;
+
+    void setupUi(QWidget *KApprovalWidget)
+<span style = "background-color:#dfd">    {
+        if (KApprovalWidget-&gt;objectName().isEmpty())
+            KApprovalWidget-&gt;setObjectName(QStringLiteral("KApprovalWidget"));
+        KApprovalWidget-&gt;resize(1632, 1189);
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/images/logo.png"), QSize(), QIcon::Normal, QIcon::Off);
+        KApprovalWidget-&gt;setWindowIcon(icon);
+        KApprovalWidget-&gt;setStyleSheet(QLatin1String("QWidget#KApprovalWidget\n"</span>
+"{\n"
+"	background-color: rgb(215, 233, 233);\n"
+"}"));
+<span style = "background-color:#dfd">        verticalLayout_3 = new QVBoxLayout(KApprovalWidget);
+        verticalLayout_3-&gt;setSpacing(6);
+        verticalLayout_3-&gt;setContentsMargins(11, 11, 11, 11);
+        verticalLayout_3-&gt;setObjectName(QStringLiteral("verticalLayout_3"));
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2-&gt;setSpacing(6);
+        horizontalLayout_2-&gt;setObjectName(QStringLiteral("horizontalLayout_2"));
+        groupBox = new QGroupBox(KApprovalWidget);
+        groupBox-&gt;setObjectName(QStringLiteral("groupBox"));
+        verticalLayout = new QVBoxLayout(groupBox);
+        verticalLayout-&gt;setSpacing(6);
+        verticalLayout-&gt;setContentsMargins(11, 11, 11, 11);
+        verticalLayout-&gt;setObjectName(QStringLiteral("verticalLayout"));
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3-&gt;setSpacing(6);
+        horizontalLayout_3-&gt;setObjectName(QStringLiteral("horizontalLayout_3"));
+        showAllReservation = new QPushButton(groupBox);
+        showAllReservation-&gt;setObjectName(QStringLiteral("showAllReservation"));</span>
+
+<span style = "background-color:#dfd">        horizontalLayout_3-&gt;addWidget(showAllReservation);</span>
+
+<span style = "background-color:#dfd">        logout = new QPushButton(groupBox);
+        logout-&gt;setObjectName(QStringLiteral("logout"));</span>
+
+<span style = "background-color:#dfd">        horizontalLayout_3-&gt;addWidget(logout);</span>
+
+
+<span style = "background-color:#dfd">        verticalLayout-&gt;addLayout(horizontalLayout_3);</span>
+
+<span style = "background-color:#dfd">        textBrowserAllReserve = new QTextBrowser(groupBox);
+        textBrowserAllReserve-&gt;setObjectName(QStringLiteral("textBrowserAllReserve"));</span>
+
+<span style = "background-color:#dfd">        verticalLayout-&gt;addWidget(textBrowserAllReserve);</span>
+
+
+<span style = "background-color:#dfd">        horizontalLayout_2-&gt;addWidget(groupBox);</span>
+
+
+<span style = "background-color:#dfd">        verticalLayout_3-&gt;addLayout(horizontalLayout_2);</span>
+
+<span style = "background-color:#dfd">        groupBox_2 = new QGroupBox(KApprovalWidget);
+        groupBox_2-&gt;setObjectName(QStringLiteral("groupBox_2"));
+        verticalLayout_2 = new QVBoxLayout(groupBox_2);
+        verticalLayout_2-&gt;setSpacing(6);
+        verticalLayout_2-&gt;setContentsMargins(11, 11, 11, 11);
+        verticalLayout_2-&gt;setObjectName(QStringLiteral("verticalLayout_2"));
+        showApprovalReserve = new QPushButton(groupBox_2);
+        showApprovalReserve-&gt;setObjectName(QStringLiteral("showApprovalReserve"));</span>
+
+<span style = "background-color:#dfd">        verticalLayout_2-&gt;addWidget(showApprovalReserve);</span>
+
+<span style = "background-color:#dfd">        listWidgetApprovalReserve = new QListWidget(groupBox_2);
+        listWidgetApprovalReserve-&gt;setObjectName(QStringLiteral("listWidgetApprovalReserve"));</span>
+
+<span style = "background-color:#dfd">        verticalLayout_2-&gt;addWidget(listWidgetApprovalReserve);</span>
+
+<span style = "background-color:#dfd">        horizontalLayout = new QHBoxLayout();
+        horizontalLayout-&gt;setSpacing(6);
+        horizontalLayout-&gt;setObjectName(QStringLiteral("horizontalLayout"));
+        agreeReserve = new QPushButton(groupBox_2);
+        agreeReserve-&gt;setObjectName(QStringLiteral("agreeReserve"));</span>
+
+<span style = "background-color:#dfd">        horizontalLayout-&gt;addWidget(agreeReserve);</span>
+
+<span style = "background-color:#dfd">        refuseReserve = new QPushButton(groupBox_2);
+        refuseReserve-&gt;setObjectName(QStringLiteral("refuseReserve"));</span>
+
+<span style = "background-color:#dfd">        horizontalLayout-&gt;addWidget(refuseReserve);</span>
+
+
+<span style = "background-color:#dfd">        verticalLayout_2-&gt;addLayout(horizontalLayout);</span>
+
+
+<span style = "background-color:#dfd">        verticalLayout_3-&gt;addWidget(groupBox_2);</span>
+
+
+<span style = "background-color:#dfd">        retranslateUi(KApprovalWidget);</span>
+
+<span style = "background-color:#dfd">        QMetaObject::connectSlotsByName(KApprovalWidget);
+    } // setupUi</span>
+
+    void retranslateUi(QWidget *KApprovalWidget)
+<span style = "background-color:#dfd">    {
+        KApprovalWidget-&gt;setWindowTitle(QApplication::translate("KApprovalWidget", "\350\241\214\346\224\277\344\272\272\345\221\230\345\256\241\346\211\271\347\225\214\351\235\242", Q_NULLPTR));
+        groupBox-&gt;setTitle(QApplication::translate("KApprovalWidget", "\351\242\204\347\272\246\344\277\241\346\201\257", Q_NULLPTR));
+        showAllReservation-&gt;setText(QApplication::translate("KApprovalWidget", "\346\237\245\347\234\213\346\211\200\346\234\211\351\242\204\347\272\246", Q_NULLPTR));
+        logout-&gt;setText(QApplication::translate("KApprovalWidget", "\346\263\250\351\224\200\347\231\273\345\275\225", Q_NULLPTR));
+        groupBox_2-&gt;setTitle(QApplication::translate("KApprovalWidget", "\345\256\241\346\211\271\347\256\241\347\220\206", Q_NULLPTR));
+        showApprovalReserve-&gt;setText(QApplication::translate("KApprovalWidget", "\346\237\245\347\234\213\345\276\205\345\256\241\346\211\271\351\242\204\347\272\246", Q_NULLPTR));
+        agreeReserve-&gt;setText(QApplication::translate("KApprovalWidget", "\345\256\241\346\211\271\351\200\232\350\277\207", Q_NULLPTR));
+        refuseReserve-&gt;setText(QApplication::translate("KApprovalWidget", "\345\256\241\346\211\271\345\220\246\345\206\263", Q_NULLPTR));
+    } // retranslateUi</span>
+
+};
+
+namespace Ui {
+    class KApprovalWidget: public Ui_KApprovalWidget {};
+} // namespace Ui
+
+QT_END_NAMESPACE
+
+#endif // UI_KAPPROVALWIDGET_H</pre>
+        <hr />
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th align="center">
+                        <small>Generated by</small>
+                        <a href="https://github.com/OpenCppCoverage/OpenCppCoverage/releases">
+                            <strong>OpenCppCoverage (Version: 0.9.9.0)</strong>
+                        </a>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </body>
+</html>

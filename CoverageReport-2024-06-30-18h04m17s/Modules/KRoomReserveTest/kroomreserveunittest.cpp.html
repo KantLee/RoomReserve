@@ -1,0 +1,313 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>kroomreserveunittest.cpp</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+    <body onload="prettyPrint()">
+        <h4></h4>
+        <pre class="prettyprint lang-cpp linenums">
+ï»¿#include "kroomreserveunittest.h"
+
+KRoomReserveUnitTest::KRoomReserveUnitTest()
+<span style = "background-color:#dfd">	: m_db(KDataBase::getInstance())
+	, roomReserve(nullptr)
+	, adminWidget(nullptr)
+	, coderWidget(nullptr)
+	, approvalWidget(nullptr)
+{
+}</span>
+
+void KRoomReserveUnitTest::initTestCase()
+<span style = "background-color:#dfd">{
+	m_db.connectDataBase();	// å»ºç«æ°æ®åºè¿æ¥
+}</span>
+
+// æµè¯æ°æ®åºçåå§åæä½
+void KRoomReserveUnitTest::initDBTest()
+<span style = "background-color:#dfd">{
+	QVERIFY(m_db.connectDataBase());
+	m_db.createTable();
+	QVERIFY(m_db.isExistTable("Users"));
+	QVERIFY(m_db.isExistTable("MeetingRooms"));
+	QVERIFY(m_db.isExistTable("Reservations"));</span>
+	// åå»ºä¼è®®å®¤ä¿¡æ¯
+<span style = "background-color:#dfd">	QList&lt;KRoomInfo&gt; rooms;
+	rooms &lt;&lt; KRoomInfo{ u8"ç´«é³æ¹ä¼è®®å®¤",14,true };
+	rooms &lt;&lt; KRoomInfo{ u8"åå®æ¹ä¼è®®å®¤",8,false };
+	rooms &lt;&lt; KRoomInfo{ u8"æ¸æ½­æ¹ä¼è®®å®¤",10,false };
+	rooms &lt;&lt; KRoomInfo{ u8"é»å®¶æ¹ä¼è®®å®¤",6,false };
+	rooms &lt;&lt; KRoomInfo{ u8"æ¨æ¥æ¹ä¼è®®å®¤",18,true };
+	rooms &lt;&lt; KRoomInfo{ u8"ä¸­å±±æ¹ä¼è®®å®¤",150,true };
+	QVERIFY(m_db.initMeetingRoom(rooms));
+	m_db.disconnectDataBase();
+	QSqlDatabase database = QSqlDatabase::database("room_reserve_connection", false);
+	QVERIFY(!database.isOpen());
+}</span>
+
+// æµè¯ç»å½åè½
+void KRoomReserveUnitTest::loginUnitTest()
+<span style = "background-color:#dfd">{
+	roomReserve = new KRoomReserve();</span>
+	// è¾å¥ç¨æ·ååå¯ç 
+<span style = "background-color:#dfd">	roomReserve-&gt;ui-&gt;userName-&gt;clear();
+	roomReserve-&gt;ui-&gt;password-&gt;clear();
+	QTest::keyClicks(roomReserve-&gt;ui-&gt;userName, "admin");
+	QTest::keyClicks(roomReserve-&gt;ui-&gt;password, "admin");</span>
+	// éæ©è§è²
+<span style = "background-color:#dfd">	roomReserve-&gt;ui-&gt;comboBoxIdentity-&gt;setCurrentIndex(2);
+	QSignalSpy spy(roomReserve-&gt;ui-&gt;loginButton, &amp;QPushButton::clicked);
+	QTest::mouseClick(roomReserve-&gt;ui-&gt;loginButton, Qt::LeftButton);
+	QCOMPARE(spy.count(), 1);
+	QString userName = roomReserve-&gt;ui-&gt;userName-&gt;text();
+	QString password = roomReserve-&gt;ui-&gt;password-&gt;text();
+	QString role = roomReserve-&gt;ui-&gt;comboBoxIdentity-&gt;currentText();
+	QCOMPARE(roomReserve-&gt;m_database.isExistUser(userName), true);
+	QCOMPARE(roomReserve-&gt;m_database.getUserPassword(userName), roomReserve-&gt;m_database.encryptPassword(password));
+	QCOMPARE(roomReserve-&gt;m_database.getUserRole(userName), role);
+}</span>
+
+// æµè¯æ·»å äººå
+void KRoomReserveUnitTest::addPeopleTest()
+<span style = "background-color:#dfd">{
+	adminWidget = new KAdminWidget();
+	QTest::keyClicks(adminWidget-&gt;ui-&gt;userName, "UnitTest");
+	QTest::keyClicks(adminWidget-&gt;ui-&gt;name, "UnitTest");
+	QTest::keyClicks(adminWidget-&gt;ui-&gt;password, "UnitTest");
+	QTest::keyClicks(adminWidget-&gt;ui-&gt;password_2, "UnitTest");
+	adminWidget-&gt;ui-&gt;comboBoxIdentity-&gt;setCurrentIndex(1);	// è®¾ç½®ä¸ºç åäººå
+	QString userName = adminWidget-&gt;ui-&gt;userName-&gt;text();
+	QString name = adminWidget-&gt;ui-&gt;name-&gt;text();
+	QString password = adminWidget-&gt;ui-&gt;password-&gt;text();
+	QString password_2 = adminWidget-&gt;ui-&gt;password_2-&gt;text();
+	QString role = adminWidget-&gt;ui-&gt;comboBoxIdentity-&gt;currentText();
+	QSignalSpy spy(adminWidget-&gt;ui-&gt;addPeople, &amp;QPushButton::clicked);
+	QTest::mouseClick(adminWidget-&gt;ui-&gt;addPeople, Qt::LeftButton);
+	QCOMPARE(spy.count(), 1);
+	if (!m_db.isExistUser(userName))</span>
+	{
+<span style = "background-color:#fdd">		KUserInfo user = { userName,name,m_db.encryptPassword(password),role };
+		QCOMPARE(m_db.insertUserData(user), true);
+	}</span>
+	
+<span style = "background-color:#dfd">	userName = "UnitTest_2";
+	name = "UnitTest_2";
+	password = "UnitTest_2";
+	password_2 = "UnitTest_2";
+	role = u8"ç åäººå";
+	if (!m_db.isExistUser(userName))</span>
+	{
+<span style = "background-color:#dfd">		KUserInfo user = { userName,name,m_db.encryptPassword(password),role };
+		QCOMPARE(m_db.insertUserData(user), true);
+	}
+	userName = "UnitTest_3";
+	name = "UnitTest_3";
+	password = "UnitTest_3";
+	password_2 = "UnitTest_3";
+	role = u8"è¡æ¿äººå";
+	if (!m_db.isExistUser(userName))</span>
+	{
+<span style = "background-color:#dfd">		KUserInfo user = { userName,name,m_db.encryptPassword(password),role };
+		QCOMPARE(m_db.insertUserData(user), true);
+	}
+}</span>
+
+// æµè¯è·åäººå
+void KRoomReserveUnitTest::getPeopleTest()
+<span style = "background-color:#dfd">{
+	QSignalSpy spy_1(adminWidget-&gt;ui-&gt;getCoders, &amp;QPushButton::clicked);
+	QSignalSpy spy_2(adminWidget-&gt;ui-&gt;getAdmins, &amp;QPushButton::clicked);
+	QTest::mouseClick(adminWidget-&gt;ui-&gt;getCoders, Qt::LeftButton);
+	QTest::mouseClick(adminWidget-&gt;ui-&gt;getAdmins, Qt::LeftButton);
+	QCOMPARE(spy_1.count(), 1);
+	QCOMPARE(spy_2.count(), 1);
+	QVERIFY(m_db.getAllUsers("ç åäººå") != "Error");
+	QVERIFY(m_db.getAllUsers("è¡æ¿äººå") != "Error");
+}</span>
+
+// æµè¯è·åææä¼è®®å®¤ä¿¡æ¯
+void KRoomReserveUnitTest::getMeetingRoomsTest()
+<span style = "background-color:#dfd">{
+	QSignalSpy spy(adminWidget-&gt;ui-&gt;showRooms, &amp;QPushButton::clicked);
+	QTest::mouseClick(adminWidget-&gt;ui-&gt;showRooms, Qt::LeftButton);
+	QCOMPARE(spy.count(), 1);
+	QVERIFY(m_db.getAllRooms() != "Error");
+}</span>
+
+// æµè¯æ¸ç©ºææé¢çº¦ä¿¡æ¯
+void KRoomReserveUnitTest::clearAllReserveTest()
+<span style = "background-color:#dfd">{
+	QSignalSpy spy(adminWidget-&gt;ui-&gt;clearAllReserve, &amp;QPushButton::clicked);
+	QTest::mouseClick(adminWidget-&gt;ui-&gt;clearAllReserve, Qt::LeftButton);
+	QCOMPARE(spy.count(), 1);
+	QVERIFY(m_db.clearReserve());
+}</span>
+
+// æµè¯ç åäººåæ¥çæå®æ¥æçä¼è®®å®¤ä¿¡æ¯
+void KRoomReserveUnitTest::getThatRoomsTest()
+<span style = "background-color:#dfd">{
+	coderWidget = new KCoderWidget("UnitTest");
+	coderWidget-&gt;ui-&gt;weekDate-&gt;setCurrentIndex(2);	// éæ©å¨ä¸
+	coderWidget-&gt;ui-&gt;dayDate-&gt;setCurrentIndex(0);	// éæ©ä¸å
+	QSignalSpy spy(coderWidget-&gt;ui-&gt;searchRooms, &amp;QPushButton::clicked);
+	QTest::mouseClick(coderWidget-&gt;ui-&gt;searchRooms, Qt::LeftButton);
+	QCOMPARE(spy.count(), 1);
+	QString week = coderWidget-&gt;ui-&gt;weekDate-&gt;currentText();
+	QString day = coderWidget-&gt;ui-&gt;dayDate-&gt;currentText();
+	QVERIFY(m_db.getTheRooms(week, day) != "Error");
+}</span>
+
+// æµè¯ç åäººåé¢çº¦ä¼è®®å®¤
+void KRoomReserveUnitTest::reserveMeetingRoomTest()
+<span style = "background-color:#dfd">{
+	coderWidget-&gt;ui-&gt;comboBoxRooms-&gt;setCurrentIndex(0);	// éæ©ç´«é³æ¹ä¼è®®å®¤
+	QString room = coderWidget-&gt;ui-&gt;comboBoxRooms-&gt;currentText();
+	QString week = coderWidget-&gt;ui-&gt;weekDate-&gt;currentText();	// å¨ä¸
+	QString day = coderWidget-&gt;ui-&gt;dayDate-&gt;currentText();	// ä¸å
+	QSignalSpy spy(coderWidget-&gt;ui-&gt;reserveRoom, &amp;QPushButton::clicked);
+	QTest::mouseClick(coderWidget-&gt;ui-&gt;reserveRoom, Qt::LeftButton);
+	QCOMPARE(spy.count(), 1);
+	QVERIFY(m_db.reserveRoom("UnitTest",room,week, day) != "Error");
+	room = u8"åå®æ¹ä¼è®®å®¤";
+	week = u8"å¨äº";
+	day = u8"ä¸å";
+	QVERIFY(m_db.reserveRoom("UnitTest_2",room,week, day) != "Error");
+	room = u8"ä¸­å±±æ¹ä¼è®®å®¤";
+	week = u8"å¨ä¸";
+	day = u8"ä¸å";
+	QVERIFY(m_db.reserveRoom("UnitTest_3", room, week, day) != "Error");
+}</span>
+
+// æµè¯ç åäººåæ¥çä¸ªäººé¢çº¦
+void KRoomReserveUnitTest::showPersonalReserveTest()
+<span style = "background-color:#dfd">{
+	QSignalSpy spy(coderWidget-&gt;ui-&gt;showPersonalReserve, &amp;QPushButton::clicked);
+	QTest::mouseClick(coderWidget-&gt;ui-&gt;showPersonalReserve, Qt::LeftButton);
+	QCOMPARE(spy.count(), 1);
+	QVector&lt;KPersonalReserve&gt; res = m_db.getPersonalReserve("UnitTest");
+	KPersonalReserve item = res.back();
+	QCOMPARE(item.roomName, QString(u8"ç´«é³æ¹ä¼è®®å®¤"));
+	QCOMPARE(item.week, QString(u8"å¨ä¸"));
+	QCOMPARE(item.day, QString(u8"ä¸å"));
+	res.clear();
+	res = m_db.getPersonalReserve("UnitTest_2");
+	item = res.back();
+	QCOMPARE(item.roomName, QString(u8"åå®æ¹ä¼è®®å®¤"));
+	QCOMPARE(item.week, QString(u8"å¨äº"));
+	QCOMPARE(item.day, QString(u8"ä¸å"));
+}</span>
+
+// æµè¯ç åäººåæ¥çææé¢çº¦
+void KRoomReserveUnitTest::showAllReserveTest()
+<span style = "background-color:#dfd">{
+	QSignalSpy spy(coderWidget-&gt;ui-&gt;showAllReserve, &amp;QPushButton::clicked);
+	QTest::mouseClick(coderWidget-&gt;ui-&gt;showAllReserve, Qt::LeftButton);
+	QCOMPARE(spy.count(), 1);
+}</span>
+
+// æµè¯ç åäººååæ¶ä¸ªäººé¢çº¦
+void KRoomReserveUnitTest::concealPersonalReserveTest()
+<span style = "background-color:#dfd">{
+	QSignalSpy spy(coderWidget-&gt;ui-&gt;concealReserve, &amp;QPushButton::clicked);
+	QTest::mouseClick(coderWidget-&gt;ui-&gt;concealReserve, Qt::LeftButton);
+	QCOMPARE(spy.count(), 1);
+	QVector&lt;KPersonalReserve&gt; res = m_db.getPersonalReserve("UnitTest_2");
+	const KPersonalReserve item = res.back();
+	QVERIFY(m_db.concealReserve(item.reserveID));
+}</span>
+
+// æµè¯ç åäººååæ¶é¢çº¦çå¯¹è¯æ¡
+void KRoomReserveUnitTest::concealReserveDialogTest()
+<span style = "background-color:#dfd">{
+	QVector&lt;KPersonalReserve&gt; res = m_db.getPersonalReserve("UnitTest");
+	KConcealDialog concealDialog(res);
+	QSignalSpy spy(concealDialog.ui-&gt;confirmButton, &amp;QPushButton::clicked);
+	QTest::mouseClick(concealDialog.ui-&gt;confirmButton, Qt::LeftButton);
+	QCOMPARE(spy.count(), 1);
+	QSignalSpy spy_2(concealDialog.ui-&gt;cancelButton, &amp;QPushButton::clicked);
+	QTest::mouseClick(concealDialog.ui-&gt;cancelButton, Qt::LeftButton);
+	QCOMPARE(spy_2.count(), 1);
+}</span>
+
+// æµè¯è¡æ¿äººåæ¥çææå¾å®¡æ¹çä¿¡æ¯
+void KRoomReserveUnitTest::showApprovalReserveTest()
+<span style = "background-color:#dfd">{
+	approvalWidget = new KApprovalWidget();
+	QSignalSpy spy(approvalWidget-&gt;ui-&gt;showApprovalReserve, &amp;QPushButton::clicked);
+	QTest::mouseClick(approvalWidget-&gt;ui-&gt;showApprovalReserve, Qt::LeftButton);
+	QCOMPARE(spy.count(), 1);
+	QVector&lt;KWaitApproval&gt; res = m_db.getWaitApprovalReserve();
+	QVERIFY(!res.isEmpty());
+}</span>
+
+// æµè¯è¡æ¿äººåå®¡æ¹é¢çº¦
+void KRoomReserveUnitTest::approvalReserveTest()
+<span style = "background-color:#dfd">{
+	QSignalSpy spy(approvalWidget-&gt;ui-&gt;agreeReserve, &amp;QPushButton::clicked);
+	QTest::mouseClick(approvalWidget-&gt;ui-&gt;agreeReserve, Qt::LeftButton);
+	QCOMPARE(spy.count(), 1);
+	QSignalSpy spy_2(approvalWidget-&gt;ui-&gt;refuseReserve, &amp;QPushButton::clicked);
+	QTest::mouseClick(approvalWidget-&gt;ui-&gt;refuseReserve, Qt::LeftButton);
+	QCOMPARE(spy_2.count(), 1);
+	QVector&lt;KWaitApproval&gt; res = m_db.getWaitApprovalReserve();
+	KWaitApproval item = res.front();
+	QVERIFY(m_db.approvalReservation(item.reserveID, true));
+	item = res.back();
+	QVERIFY(m_db.approvalReservation(item.reserveID, false));
+}</span>
+
+// æ³¨éç»å½æµè¯
+void KRoomReserveUnitTest::logoutTest()
+<span style = "background-color:#dfd">{
+	QSignalSpy spy(approvalWidget-&gt;ui-&gt;logout, &amp;QPushButton::clicked);
+	QTest::mouseClick(approvalWidget-&gt;ui-&gt;logout, Qt::LeftButton);
+	QCOMPARE(spy.count(), 1);
+	QSignalSpy spy_2(adminWidget-&gt;ui-&gt;logoutButton, &amp;QPushButton::clicked);
+	QTest::mouseClick(adminWidget-&gt;ui-&gt;logoutButton, Qt::LeftButton);
+	QCOMPARE(spy_2.count(), 1);
+	QSignalSpy spy_3(coderWidget-&gt;ui-&gt;logout, &amp;QPushButton::clicked);
+	QTest::mouseClick(coderWidget-&gt;ui-&gt;logout, Qt::LeftButton);
+	QCOMPARE(spy_3.count(), 1);
+}</span>
+
+void KRoomReserveUnitTest::cleanupTestCase()
+<span style = "background-color:#dfd">{
+	m_db.disconnectDataBase();	// å³é­æ°æ®åºè¿æ¥
+	if (roomReserve)</span>
+	{
+<span style = "background-color:#dfd">		delete roomReserve;
+		roomReserve = nullptr;</span>
+	}
+<span style = "background-color:#dfd">	if (adminWidget)</span>
+	{
+<span style = "background-color:#dfd">		delete adminWidget;
+		adminWidget = nullptr;</span>
+	}
+<span style = "background-color:#dfd">	if (coderWidget)</span>
+	{
+<span style = "background-color:#dfd">		delete coderWidget;
+		coderWidget = nullptr;</span>
+	}
+<span style = "background-color:#dfd">	if (approvalWidget)</span>
+	{
+<span style = "background-color:#dfd">		delete approvalWidget;
+		approvalWidget = nullptr;</span>
+	}
+<span style = "background-color:#dfd">}</span></pre>
+        <hr />
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th align="center">
+                        <small>Generated by</small>
+                        <a href="https://github.com/OpenCppCoverage/OpenCppCoverage/releases">
+                            <strong>OpenCppCoverage (Version: 0.9.9.0)</strong>
+                        </a>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </body>
+</html>

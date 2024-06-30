@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>KCoderWidget</class>
+ <widget class="QWidget" name="KCoderWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1610</width>
+    <height>1252</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>预约会议室</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="kroomreserve.qrc">
+    <normaloff>:/images/logo.png</normaloff>:/images/logo.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget#CoderWidget
+{
+	background-color: rgb(215, 233, 233);
+}</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>541</height>
+      </size>
+     </property>
+     <property name="title">
+      <string>预约会议室</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>选择日期</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="weekDate">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>43</height>
+           </size>
+          </property>
+          <item>
+           <property name="text">
+            <string>周一</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>周二</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>周三</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>周四</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>周五</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>70</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>选择时间段</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="dayDate">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>43</height>
+           </size>
+          </property>
+          <item>
+           <property name="text">
+            <string>上午</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>下午</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="searchRooms">
+          <property name="minimumSize">
+           <size>
+            <width>300</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>查询该时间段会议室状态</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_5">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QTextBrowser" name="rooms">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>300</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>300</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>选择会议室</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboBoxRooms">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>43</height>
+           </size>
+          </property>
+          <item>
+           <property name="text">
+            <string>会议室001</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>会议室002</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>会议室003</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>会议室004</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>会议室005</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>会议室006</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_4">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="reserveRoom">
+          <property name="text">
+           <string>预约</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_6">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>50</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="logout">
+          <property name="text">
+           <string>注销登录</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string>预约信息</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="1" column="0" colspan="4">
+       <widget class="QTextBrowser" name="reserveResult"/>
+      </item>
+      <item row="0" column="0">
+       <widget class="QPushButton" name="showPersonalReserve">
+        <property name="text">
+         <string>查看个人预约信息</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QPushButton" name="showAllReserve">
+        <property name="text">
+         <string>查看所有预约信息</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="concealReserve">
+        <property name="text">
+         <string>取消个人预约</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="kroomreserve.qrc"/>
+ </resources>
+ <connections/>
+</ui>

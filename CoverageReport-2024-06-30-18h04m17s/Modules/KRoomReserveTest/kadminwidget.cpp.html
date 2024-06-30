@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>kadminwidget.cpp</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+    <body onload="prettyPrint()">
+        <h4></h4>
+        <pre class="prettyprint lang-cpp linenums">
+ï»¿#include "kadminwidget.h"
+
+KAdminWidget::KAdminWidget(QWidget *parent)
+<span style = "background-color:#dfd">	: QWidget(parent)
+	,m_database(KDataBase::getInstance())
+	,ui(new Ui::KAdminWidget())
+	,m_worker(new KDatabaseWorker())
+{
+	ui-&gt;setupUi(this);</span>
+	m_worker-&gt;moveToThread(&amp;m_queryThread);
+	connect(&amp;m_queryThread, &amp;QThread::finished, m_worker, &amp;QObject::deleteLater);
+<span style = "background-color:#dfd">	connect(this, &amp;KAdminWidget::startRoomQuery, m_worker, &amp;KDatabaseWorker::performRoomQuery);
+	connect(m_worker, &amp;KDatabaseWorker::roomsQueryFinished, this, &amp;KAdminWidget::handleRoomQueryResults);
+	connect(this, &amp;KAdminWidget::startCoderQuery, m_worker, &amp;KDatabaseWorker::performCoderQuery);</span>
+	connect(m_worker, &amp;KDatabaseWorker::coderQueryFinished, this, &amp;KAdminWidget::handleCoderQueryResults);
+	connect(this, &amp;KAdminWidget::startAdminsQuery, m_worker, &amp;KDatabaseWorker::performAdminQuery);
+<span style = "background-color:#dfd">	connect(m_worker, &amp;KDatabaseWorker::adminsQueryFinished, this, &amp;KAdminWidget::handleAdminsQueryResults);</span>
+	m_queryThread.start();
+<span style = "background-color:#dfd">}
+
+KAdminWidget::~KAdminWidget()
+{
+	delete ui;
+	m_queryThread.quit();</span>
+	m_queryThread.wait();
+<span style = "background-color:#fdd">}
+</span>
+void KAdminWidget::on_addPeople_clicked()
+<span style = "background-color:#dfd">{</span>
+	// åæ£æ¥æ°æ®æ ¼å¼ï¼åé¡¹ä¸ä¸ºç©ºï¼ä¸è¾å¥çä¸¤æ¬¡å¯ç ä¸è´
+<span style = "background-color:#fdd">	QString userName = ui-&gt;userName-&gt;text();
+	QString name = ui-&gt;name-&gt;text();</span>
+	QString password = ui-&gt;password-&gt;text();
+<span style = "background-color:#dfd">	QString password_2 = ui-&gt;password_2-&gt;text();</span>
+	QString role = ui-&gt;comboBoxIdentity-&gt;currentText();
+<span style = "background-color:#fdd">	if (userName.trimmed().isEmpty())
+	{</span>
+		QMessageBox::warning(this, "è­¦å", "ç¨æ·åä¸è½ä¸ºç©ºç½å­ç¬¦æèä¸ºç©º");
+<span style = "background-color:#dfd">		return;</span>
+	}
+<span style = "background-color:#fdd">	if (name.trimmed().isEmpty())
+	{</span>
+		QMessageBox::warning(this, "è­¦å", "å§åä¸è½ä¸ºç©ºç½å­ç¬¦æèä¸ºç©º");
+<span style = "background-color:#dfd">		return;</span>
+	}
+<span style = "background-color:#fdd">	if (password.trimmed().isEmpty())
+	{</span>
+		QMessageBox::warning(this, "è­¦å", "å¯ç ä¸è½ä¸ºç©ºç½å­ç¬¦æèä¸ºç©º");
+		return;
+<span style = "background-color:#dfd">	}
+	if (password != password_2)
+	{
+		QMessageBox::warning(this, "è­¦å", "ä¸¤æ¬¡è¾å¥çå¯ç ä¸ä¸è´");</span>
+		return;
+<span style = "background-color:#fdd">	}</span>
+<span style = "background-color:#dfd">	if (m_database.isExistUser(userName))</span>
+	{
+		QMessageBox::warning(this, "è­¦å", "ç¨æ·åå·²å­å¨");
+		return;
+<span style = "background-color:#dfd">	}
+	// å å¯å¯ç 
+	password = m_database.encryptPassword(password_2);</span>
+	KUserInfo user = { userName,name,password,role };
+<span style = "background-color:#fdd">	if (m_database.insertUserData(user))
+		QMessageBox::information(this, "æç¤º", role+userName + "æ·»å æå");</span>
+<span style = "background-color:#dfd">	else</span>
+		QMessageBox::information(this, "éè¯¯", role+userName + "æ·»å å¤±è´¥");
+<span style = "background-color:#fdd">}
+</span>
+// è·åææç åäººåä¿¡æ¯
+void KAdminWidget::on_getCoders_clicked()
+<span style = "background-color:#dfd">{
+	emit startCoderQuery();
+}</span>
+
+<span style = "background-color:#dfd">// è·åææè¡æ¿äººåä¿¡æ¯</span>
+void KAdminWidget::on_getAdmins_clicked()
+{
+	emit startAdminsQuery();
+<span style = "background-color:#dfd">}
+
+// æ¥è¯¢ææä¼è®®å®¤ä¿¡æ¯</span>
+void KAdminWidget::on_showRooms_clicked()
+<span style = "background-color:#fdd">{
+	emit startRoomQuery();</span>
+<span style = "background-color:#dfd">}</span>
+
+<span style = "background-color:#fdd">// æ¸ç©ºææé¢çº¦ä¿¡æ¯
+void KAdminWidget::on_clearAllReserve_clicked()</span>
+{
+	if (m_database.clearReserve())
+<span style = "background-color:#dfd">		QMessageBox::information(this, "æç¤º", "é¢çº¦ä¿¡æ¯å·²æ¸ç©º");
+	else
+		QMessageBox::warning(this, "éè¯¯", "é¢çº¦ä¿¡æ¯æ¸çå¤±è´¥");</span>
+}
+<span style = "background-color:#dfd"></span>
+// å¤çä¼è®®å®¤ä¿¡æ¯çæ¥è¯¢ç»æ
+void KAdminWidget::handleRoomQueryResults(const QString results)
+{
+<span style = "background-color:#dfd">	if (results =="Error")
+	{
+		QMessageBox::warning(this, "éè¯¯", "æ¥è¯¢å¤±è´¥ï¼è¯·éè¯");</span>
+	}
+<span style = "background-color:#fdd">	else if (results.isEmpty())
+	{</span>
+<span style = "background-color:#dfd">		QMessageBox::information(this, "æç¤º", "ææ ä¼è®®å®¤ä¿¡æ¯");</span>
+	}
+<span style = "background-color:#fdd">	else
+	{</span>
+		ui-&gt;textBrowserRooms-&gt;clear();
+		ui-&gt;textBrowserRooms-&gt;setText("ææä¼è®®å®¤ä¿¡æ¯å¦ä¸ï¼");
+<span style = "background-color:#dfd">		ui-&gt;textBrowserRooms-&gt;append(results);
+	}
+}</span>
+
+<span style = "background-color:#dfd">// å¤çç åäººåä¿¡æ¯çæ¥è¯¢ç»æ</span>
+void KAdminWidget::handleCoderQueryResults(const QString results)
+{
+<span style = "background-color:#dfd">	if (results == "Error")
+	{
+		QMessageBox::warning(this, "éè¯¯", "æ¥è¯¢å¤±è´¥ï¼è¯·éè¯");</span>
+	}
+<span style = "background-color:#fdd">	else if (results.isEmpty())</span>
+<span style = "background-color:#dfd">	{</span>
+		QMessageBox::information(this, "æç¤º", "ææ ç åäººåä¿¡æ¯");
+	}
+<span style = "background-color:#dfd">	else
+	{
+		ui-&gt;textBrowserUsers-&gt;clear();
+		ui-&gt;textBrowserUsers-&gt;setText("ææç åäººåä¿¡æ¯å¦ä¸ï¼");</span>
+		ui-&gt;textBrowserUsers-&gt;append(results);
+	}
+}
+
+// å¤çè¡æ¿äººåæ¥è¯¢ç»æ
+void KAdminWidget::handleAdminsQueryResults(const QString results)
+{
+	if (results == "Error")
+	{
+		QMessageBox::warning(this, "éè¯¯", "æ¥è¯¢å¤±è´¥ï¼è¯·éè¯");
+	}
+	else if (results.isEmpty())
+	{
+		QMessageBox::information(this, "æç¤º", "ææ è¡æ¿äººåä¿¡æ¯");
+	}
+	else
+	{
+		ui-&gt;textBrowserUsers-&gt;clear();
+		ui-&gt;textBrowserUsers-&gt;setText("ææè¡æ¿äººåä¿¡æ¯å¦ä¸ï¼");
+		ui-&gt;textBrowserUsers-&gt;append(results);
+	}
+}
+
+void KAdminWidget::on_logoutButton_clicked()
+{
+	this-&gt;close();
+	emit logout();
+}</pre>
+        <hr />
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th align="center">
+                        <small>Generated by</small>
+                        <a href="https://github.com/OpenCppCoverage/OpenCppCoverage/releases">
+                            <strong>OpenCppCoverage (Version: 0.9.9.0)</strong>
+                        </a>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </body>
+</html>

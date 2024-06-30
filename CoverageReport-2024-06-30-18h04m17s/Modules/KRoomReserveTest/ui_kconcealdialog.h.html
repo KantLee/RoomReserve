@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>ui_kconcealdialog.h</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+    <body onload="prettyPrint()">
+        <h4></h4>
+        <pre class="prettyprint lang-cpp linenums">
+/********************************************************************************
+** Form generated from reading UI file 'kconcealdialog.ui'
+**
+** Created by: Qt User Interface Compiler version 5.9.3
+**
+** WARNING! All changes made in this file will be lost when recompiling UI file!
+********************************************************************************/
+
+#ifndef UI_KCONCEALDIALOG_H
+#define UI_KCONCEALDIALOG_H
+
+#include &lt;QtCore/QVariant&gt;
+#include &lt;QtWidgets/QAction&gt;
+#include &lt;QtWidgets/QApplication&gt;
+#include &lt;QtWidgets/QButtonGroup&gt;
+#include &lt;QtWidgets/QDialog&gt;
+#include &lt;QtWidgets/QGridLayout&gt;
+#include &lt;QtWidgets/QGroupBox&gt;
+#include &lt;QtWidgets/QHBoxLayout&gt;
+#include &lt;QtWidgets/QHeaderView&gt;
+#include &lt;QtWidgets/QListWidget&gt;
+#include &lt;QtWidgets/QPushButton&gt;
+#include &lt;QtWidgets/QSpacerItem&gt;
+#include &lt;QtWidgets/QVBoxLayout&gt;
+
+QT_BEGIN_NAMESPACE
+
+class Ui_KConcealDialog
+{
+public:
+    QVBoxLayout *verticalLayout;
+    QGroupBox *groupBox;
+    QGridLayout *gridLayout;
+    QListWidget *listWidget;
+    QHBoxLayout *horizontalLayout;
+    QSpacerItem *horizontalSpacer;
+    QPushButton *confirmButton;
+    QSpacerItem *horizontalSpacer_3;
+    QPushButton *cancelButton;
+    QSpacerItem *horizontalSpacer_2;
+
+    void setupUi(QDialog *KConcealDialog)
+<span style = "background-color:#dfd">    {
+        if (KConcealDialog-&gt;objectName().isEmpty())
+            KConcealDialog-&gt;setObjectName(QStringLiteral("KConcealDialog"));
+        KConcealDialog-&gt;resize(990, 600);
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/images/logo.png"), QSize(), QIcon::Normal, QIcon::Off);
+        KConcealDialog-&gt;setWindowIcon(icon);
+        KConcealDialog-&gt;setStyleSheet(QLatin1String("QDialog#KConcealDialog\n"</span>
+"{\n"
+"	background-color: rgb(215, 233, 233);\n"
+"}"));
+<span style = "background-color:#dfd">        verticalLayout = new QVBoxLayout(KConcealDialog);
+        verticalLayout-&gt;setSpacing(6);
+        verticalLayout-&gt;setContentsMargins(11, 11, 11, 11);
+        verticalLayout-&gt;setObjectName(QStringLiteral("verticalLayout"));
+        groupBox = new QGroupBox(KConcealDialog);
+        groupBox-&gt;setObjectName(QStringLiteral("groupBox"));
+        gridLayout = new QGridLayout(groupBox);
+        gridLayout-&gt;setSpacing(6);
+        gridLayout-&gt;setContentsMargins(11, 11, 11, 11);
+        gridLayout-&gt;setObjectName(QStringLiteral("gridLayout"));
+        listWidget = new QListWidget(groupBox);
+        listWidget-&gt;setObjectName(QStringLiteral("listWidget"));</span>
+
+<span style = "background-color:#dfd">        gridLayout-&gt;addWidget(listWidget, 0, 0, 1, 1);</span>
+
+
+<span style = "background-color:#dfd">        verticalLayout-&gt;addWidget(groupBox);</span>
+
+<span style = "background-color:#dfd">        horizontalLayout = new QHBoxLayout();
+        horizontalLayout-&gt;setSpacing(6);
+        horizontalLayout-&gt;setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);</span>
+
+<span style = "background-color:#dfd">        horizontalLayout-&gt;addItem(horizontalSpacer);</span>
+
+<span style = "background-color:#dfd">        confirmButton = new QPushButton(KConcealDialog);
+        confirmButton-&gt;setObjectName(QStringLiteral("confirmButton"));</span>
+
+<span style = "background-color:#dfd">        horizontalLayout-&gt;addWidget(confirmButton);</span>
+
+<span style = "background-color:#dfd">        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);</span>
+
+<span style = "background-color:#dfd">        horizontalLayout-&gt;addItem(horizontalSpacer_3);</span>
+
+<span style = "background-color:#dfd">        cancelButton = new QPushButton(KConcealDialog);
+        cancelButton-&gt;setObjectName(QStringLiteral("cancelButton"));</span>
+
+<span style = "background-color:#dfd">        horizontalLayout-&gt;addWidget(cancelButton);</span>
+
+<span style = "background-color:#dfd">        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);</span>
+
+<span style = "background-color:#dfd">        horizontalLayout-&gt;addItem(horizontalSpacer_2);</span>
+
+
+<span style = "background-color:#dfd">        verticalLayout-&gt;addLayout(horizontalLayout);</span>
+
+
+<span style = "background-color:#dfd">        retranslateUi(KConcealDialog);</span>
+
+<span style = "background-color:#dfd">        QMetaObject::connectSlotsByName(KConcealDialog);
+    } // setupUi</span>
+
+    void retranslateUi(QDialog *KConcealDialog)
+<span style = "background-color:#dfd">    {
+        KConcealDialog-&gt;setWindowTitle(QApplication::translate("KConcealDialog", "\345\217\226\346\266\210\344\270\252\344\272\272\351\242\204\347\272\246", Q_NULLPTR));
+        groupBox-&gt;setTitle(QApplication::translate("KConcealDialog", "\346\210\221\347\232\204\351\242\204\347\272\246\344\277\241\346\201\257", Q_NULLPTR));
+        confirmButton-&gt;setText(QApplication::translate("KConcealDialog", "\347\241\256\350\256\244\345\217\226\346\266\210\351\242\204\347\272\246", Q_NULLPTR));
+        cancelButton-&gt;setText(QApplication::translate("KConcealDialog", "\350\277\224\345\233\236", Q_NULLPTR));
+    } // retranslateUi</span>
+
+};
+
+namespace Ui {
+    class KConcealDialog: public Ui_KConcealDialog {};
+} // namespace Ui
+
+QT_END_NAMESPACE
+
+#endif // UI_KCONCEALDIALOG_H</pre>
+        <hr />
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th align="center">
+                        <small>Generated by</small>
+                        <a href="https://github.com/OpenCppCoverage/OpenCppCoverage/releases">
+                            <strong>OpenCppCoverage (Version: 0.9.9.0)</strong>
+                        </a>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </body>
+</html>

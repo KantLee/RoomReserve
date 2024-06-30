@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>kapprovalwidget.cpp</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+    <body onload="prettyPrint()">
+        <h4></h4>
+        <pre class="prettyprint lang-cpp linenums">
+ï»¿#include "kapprovalwidget.h"
+
+KApprovalWidget::KApprovalWidget(QWidget *parent)
+<span style = "background-color:#dfd">	: QWidget(parent)
+	,m_database(KDataBase::getInstance())
+	,m_worker(new KDatabaseWorker())
+{
+	ui = new Ui::KApprovalWidget();
+	ui-&gt;setupUi(this);</span>
+	m_worker-&gt;moveToThread(&amp;m_queryThread);
+	// æ³¨åèªå®ä¹ç±»åï¼æ¹ä¾¿è·¨çº¿ç¨ä¼ è¾
+<span style = "background-color:#dfd">	qRegisterMetaType&lt;QVector&lt;KWaitApproval&gt;&gt;("QVector&lt;KWaitApproval&gt;");
+	connect(&amp;m_queryThread, &amp;QThread::finished, m_worker, &amp;QObject::deleteLater);
+	connect(this, &amp;KApprovalWidget::startAllReservationQuery, m_worker, &amp;KDatabaseWorker::performRoomQuery);</span>
+	connect(m_worker, &amp;KDatabaseWorker::roomsQueryFinished, this, &amp;KApprovalWidget::handleAllReservationQueryResults);
+	connect(this, &amp;KApprovalWidget::startApprovalReservationQuery, m_worker, &amp;KDatabaseWorker::performApprovalReservationQuery);
+	connect(m_worker, &amp;KDatabaseWorker::approvalReservationQueryFinished, this, &amp;KApprovalWidget::handleApprovalReservationQueryResults);
+<span style = "background-color:#fdd">	m_queryThread.start();
+}</span>
+
+<span style = "background-color:#fdd">KApprovalWidget::~KApprovalWidget()
+{</span>
+	delete ui;
+<span style = "background-color:#fdd">	m_queryThread.quit();
+	m_queryThread.wait();</span>
+}
+
+<span style = "background-color:#fdd">// å®¡æ¹é¢çº¦</span>
+void KApprovalWidget::approvalReservation(int reservationID, bool isPassed)
+<span style = "background-color:#fdd">{
+	if (m_database.approvalReservation(reservationID, isPassed))</span>
+	{
+		if (isPassed)
+			QMessageBox::information(this, "æç¤º", QString("é¢çº¦å·²å®¡æ¹éè¿, é¢çº¦IDï¼%1").arg(reservationID));
+<span style = "background-color:#fdd">		else
+			QMessageBox::warning(this, "éè¯¯", QString("é¢çº¦å·²é©³å, é¢çº¦IDï¼%1").arg(reservationID));
+	}</span>
+	else
+<span style = "background-color:#fdd">	{
+		QMessageBox::warning(this, "éè¯¯", QString("æä½å¤±è´¥ï¼è¯·éè¯ï¼é¢çº¦IDï¼%1").arg(reservationID));
+	}</span>
+	on_showApprovalReserve_clicked();
+<span style = "background-color:#fdd">}
+</span>
+// æ¥çææé¢çº¦ä¿¡æ¯
+void KApprovalWidget::on_showAllReservation_clicked()
+<span style = "background-color:#fdd">{
+	emit startAllReservationQuery();
+}</span>
+
+<span style = "background-color:#fdd">// æ¥çææå¾å®¡æ¹ä¿¡æ¯</span>
+void KApprovalWidget::on_showApprovalReserve_clicked()
+{
+
+<span style = "background-color:#dfd">	ui-&gt;listWidgetApprovalReserve-&gt;clear();
+	emit startApprovalReservationQuery();
+}
+</span>
+// å¤çææé¢çº¦ä¿¡æ¯æ¥è¯¢ç»æ
+<span style = "background-color:#fdd">void KApprovalWidget::handleAllReservationQueryResults(const QString results)
+{</span>
+<span style = "background-color:#dfd">	if (results == "Error")</span>
+	{
+<span style = "background-color:#fdd">		QMessageBox::warning(this, "éè¯¯", "æ¥è¯¢å¤±è´¥ï¼è¯·éè¯");
+	}</span>
+	else if (results.isEmpty())
+	{
+<span style = "background-color:#dfd">		QMessageBox::information(this, "æç¤º", "ææ ä¼è®®å®¤ä¿¡æ¯");</span>
+	}
+<span style = "background-color:#dfd">	else</span>
+	{
+		ui-&gt;textBrowserAllReserve-&gt;clear();
+		ui-&gt;textBrowserAllReserve-&gt;setText("ææé¢çº¦ä¿¡æ¯å¦ä¸ï¼");
+		ui-&gt;textBrowserAllReserve-&gt;append(results);
+	}
+}
+
+<span style = "background-color:#dfd">// å¤çå¾å®¡æ¹çé¢çº¦ä¿¡æ¯æ¥è¯¢ç»æ
+void KApprovalWidget::handleApprovalReservationQueryResults(const QVector&lt;KWaitApproval&gt; results)
+{
+	if (results.isEmpty())</span>
+	{
+<span style = "background-color:#dfd">		QMessageBox::information(this, "æç¤º", "å¾å®¡æ¹ä¿¡æ¯ä¸ºç©º");</span>
+	}
+<span style = "background-color:#dfd">	else if (results.first().reserveID == -1)
+	{</span>
+		QMessageBox::warning(this, "éè¯¯", "æ¥è¯¢å¤±è´¥ï¼è¯·éè¯");
+	}
+<span style = "background-color:#fdd">	else</span>
+	{
+<span style = "background-color:#fdd">		for (const auto&amp; reservation : results)
+		{
+			QString displayText = QString("é¢çº¦ID: %1, é¢çº¦äººç¨æ·å: %2, é¢çº¦äººå§å: %3, ä¼è®®å®¤: %4, é¢çº¦æ¶é´: %5 %6, ç¶æ: %7")</span>
+				.arg(reservation.reserveID)
+<span style = "background-color:#dfd">				.arg(reservation.userName)
+				.arg(reservation.name)</span>
+				.arg(reservation.roomName)
+<span style = "background-color:#dfd">				.arg(reservation.week)</span>
+				.arg(reservation.day)
+<span style = "background-color:#dfd">				.arg(reservation.status);
+			QListWidgetItem* item = new QListWidgetItem(displayText, ui-&gt;listWidgetApprovalReserve);</span>
+			item-&gt;setData(Qt::UserRole, reservation.reserveID); // å­å¨é¢çº¦ID
+		}
+<span style = "background-color:#fdd">		connect(ui-&gt;agreeReserve, &amp;QPushButton::clicked, [this]() {</span>
+			// å¨æ­¤å¿åå½æ°ä¸­ï¼ç°å¨å¯ä»¥ä½¿ç¨ this-&gt;ui-&gt;listWidgetApprovalReserve æ¥è®¿é®listWidget
+<span style = "background-color:#fdd">			if (ui-&gt;listWidgetApprovalReserve-&gt;selectedItems().isEmpty())
+			{
+				QMessageBox::warning(this, "æç¤º", "è¯·åéæ©ä¸ä¸ªé¢çº¦ä»¥è¿è¡å®¡æ¹");</span>
+			}
+<span style = "background-color:#dfd">			else</span>
+			{
+<span style = "background-color:#dfd">				for (QListWidgetItem* item : ui-&gt;listWidgetApprovalReserve-&gt;selectedItems())</span>
+				{
+					approvalReservation(item-&gt;data(Qt::UserRole).toInt(), true);
+<span style = "background-color:#dfd">					break;
+				}
+			}
+			});</span>
+		connect(ui-&gt;refuseReserve, &amp;QPushButton::clicked, [this]() {
+			// å¨æ­¤å¿åå½æ°ä¸­ï¼ç°å¨å¯ä»¥ä½¿ç¨ this-&gt;ui-&gt;listWidgetApprovalReserve æ¥è®¿é®listWidget
+			if (ui-&gt;listWidgetApprovalReserve-&gt;selectedItems().isEmpty())
+			{
+				QMessageBox::warning(this, "æç¤º", "è¯·åéæ©ä¸ä¸ªé¢çº¦ä»¥è¿è¡å®¡æ¹");
+			}
+			else
+			{
+				for (QListWidgetItem* item : ui-&gt;listWidgetApprovalReserve-&gt;selectedItems())
+				{
+					approvalReservation(item-&gt;data(Qt::UserRole).toInt(), false);
+					break;
+				}
+			}
+			});
+	}
+}
+
+void KApprovalWidget::on_logout_clicked()
+{
+	this-&gt;close();
+	emit logout();
+}</pre>
+        <hr />
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th align="center">
+                        <small>Generated by</small>
+                        <a href="https://github.com/OpenCppCoverage/OpenCppCoverage/releases">
+                            <strong>OpenCppCoverage (Version: 0.9.9.0)</strong>
+                        </a>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </body>
+</html>

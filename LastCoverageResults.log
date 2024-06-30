@@ -1,0 +1,110 @@
+[2024-06-30 18:04:01] [info] Start Program:
+Path:"D:\\VS_2019_Proj\\KRoomReserve\\x64\\Debug\\KRoomReserveTest.exe"
+Arguments:
+Working directory: not set.
+Modules: Selected: * Excluded: 
+Sources: Selected: D:\VS_2019_Proj\KRoomReserve\KRoomReserve Excluded: 
+Log Level: Normal
+Cover Children: 0
+Aggregate by file: 1
+Continue after C++ exception: 0
+Optimized build support: 0
+Export: html 
+Input coverage: 
+Unified diff: 
+Excluded line regular expressions: 
+Substitute pdb source paths: 
+[2024-06-30 18:04:02] [info] Module: D:\VS_2019_Proj\KRoomReserve\x64\Debug\KRoomReserveTest.exe is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\ntdll.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\kernel32.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\KernelBase.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\apphelp.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: D:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\Qt5Guid.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: D:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\Qt5Widgetsd.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: D:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\Qt5Sqld.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: D:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\Qt5Testd.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\gdi32.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\gdi32.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\win32u.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\user32.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\gdi32full.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\shell32.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\msvcp_win.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\msvcp_win.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\vcruntime140d.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\ucrtbase.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\ucrtbase.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: D:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\Qt5Cored.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\ole32.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\combase.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\ucrtbased.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\rpcrt4.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\vcruntime140_1d.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\ws2_32.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\msvcp140d.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\uxtheme.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\dwmapi.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\mpr.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\version.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\msvcrt.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\advapi32.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\sechost.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\bcrypt.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\winmm.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\imm32.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\cryptbase.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\bcryptprimitives.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\windows.storage.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\WinTypes.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\SHCore.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\shlwapi.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\profapi.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: D:\Qt\Qt5.9.3\5.9.3\msvc2017_64\plugins\platforms\qwindowsd.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\oleaut32.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: C:\Windows\System32\kernel.appcore.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: D:\Qt\Qt5.9.3\5.9.3\msvc2017_64\plugins\sqldrivers\qsqlited.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: D:\Qt\Qt5.9.3\5.9.3\msvc2017_64\plugins\imageformats\qgifd.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: D:\Qt\Qt5.9.3\5.9.3\msvc2017_64\plugins\imageformats\qicnsd.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: D:\Qt\Qt5.9.3\5.9.3\msvc2017_64\plugins\imageformats\qicod.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: D:\Qt\Qt5.9.3\5.9.3\msvc2017_64\plugins\imageformats\qjpegd.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: D:\Qt\Qt5.9.3\5.9.3\msvc2017_64\plugins\imageformats\qsvgd.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: D:\Qt\Qt5.9.3\5.9.3\msvc2017_64\bin\Qt5Svgd.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: D:\Qt\Qt5.9.3\5.9.3\msvc2017_64\plugins\imageformats\qtgad.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: D:\Qt\Qt5.9.3\5.9.3\msvc2017_64\plugins\imageformats\qtiffd.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: D:\Qt\Qt5.9.3\5.9.3\msvc2017_64\plugins\imageformats\qwbmpd.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:02] [info] Module: D:\Qt\Qt5.9.3\5.9.3\msvc2017_64\plugins\imageformats\qwebpd.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:03] [info] Module: C:\Windows\System32\DWrite.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\System32\msctf.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\System32\clbcatq.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\System32\DataExchange.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\System32\twinapi.appcore.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\System32\TextInputFramework.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\System32\CoreMessaging.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\System32\CoreUIComponents.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\System32\oleacc.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\System32\msiltcfg.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\System32\msi.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\System32\sxs.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.22621.3672_none_2713b9d173822955\comctl32.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\System32\WindowsCodecs.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\System32\thumbcache.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\System32\AudioSes.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\System32\winmmbase.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\System32\MMDevAPI.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\System32\wdmaud.drv is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\System32\avrt.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\System32\ksuser.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\System32\devobj.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\System32\cfgmgr32.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\System32\cfgmgr32.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\System32\cfgmgr32.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\System32\msacm32.drv is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\System32\msacm32.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\System32\midimap.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\System32\powrprof.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\System32\umpdc.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:04] [info] Module: C:\Windows\System32\ResourcePolicyClient.dll is selected because it matches selected pattern: *
+[2024-06-30 18:04:17] [info] ----------------------------------------------------
+[2024-06-30 18:04:17] [info] Coverage generated in Folder D:\VS_2019_Proj\KRoomReserve\CoverageReport-2024-06-30-18h04m17s
+[2024-06-30 18:04:17] [info] ----------------------------------------------------
+[2024-06-30 18:04:17] [info] The code coverage report is not what you expect? See the FAQ https://github.com/OpenCppCoverage/OpenCppCoverage/wiki/FAQ.

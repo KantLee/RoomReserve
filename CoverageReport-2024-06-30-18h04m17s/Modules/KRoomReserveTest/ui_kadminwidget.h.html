@@ -1,0 +1,333 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>ui_kadminwidget.h</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+    <body onload="prettyPrint()">
+        <h4></h4>
+        <pre class="prettyprint lang-cpp linenums">
+/********************************************************************************
+** Form generated from reading UI file 'kadminwidget.ui'
+**
+** Created by: Qt User Interface Compiler version 5.9.3
+**
+** WARNING! All changes made in this file will be lost when recompiling UI file!
+********************************************************************************/
+
+#ifndef UI_KADMINWIDGET_H
+#define UI_KADMINWIDGET_H
+
+#include &lt;QtCore/QVariant&gt;
+#include &lt;QtWidgets/QAction&gt;
+#include &lt;QtWidgets/QApplication&gt;
+#include &lt;QtWidgets/QButtonGroup&gt;
+#include &lt;QtWidgets/QComboBox&gt;
+#include &lt;QtWidgets/QFormLayout&gt;
+#include &lt;QtWidgets/QGridLayout&gt;
+#include &lt;QtWidgets/QGroupBox&gt;
+#include &lt;QtWidgets/QHBoxLayout&gt;
+#include &lt;QtWidgets/QHeaderView&gt;
+#include &lt;QtWidgets/QLabel&gt;
+#include &lt;QtWidgets/QLineEdit&gt;
+#include &lt;QtWidgets/QPushButton&gt;
+#include &lt;QtWidgets/QSpacerItem&gt;
+#include &lt;QtWidgets/QTextBrowser&gt;
+#include &lt;QtWidgets/QVBoxLayout&gt;
+#include &lt;QtWidgets/QWidget&gt;
+
+QT_BEGIN_NAMESPACE
+
+class Ui_KAdminWidget
+{
+public:
+    QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout;
+    QGroupBox *groupBox;
+    QVBoxLayout *verticalLayout_2;
+    QHBoxLayout *horizontalLayout_2;
+    QFormLayout *formLayout;
+    QLabel *label;
+    QLineEdit *userName;
+    QLabel *label_3;
+    QLineEdit *password;
+    QSpacerItem *horizontalSpacer;
+    QFormLayout *formLayout_2;
+    QLineEdit *name;
+    QLabel *label_4;
+    QLineEdit *password_2;
+    QLabel *label_2;
+    QSpacerItem *horizontalSpacer_4;
+    QHBoxLayout *horizontalLayout_3;
+    QLabel *label_5;
+    QComboBox *comboBoxIdentity;
+    QSpacerItem *horizontalSpacer_2;
+    QPushButton *addPeople;
+    QSpacerItem *horizontalSpacer_3;
+    QPushButton *logoutButton;
+    QSpacerItem *horizontalSpacer_5;
+    QGroupBox *groupBox_2;
+    QGridLayout *gridLayout;
+    QPushButton *getCoders;
+    QTextBrowser *textBrowserUsers;
+    QPushButton *getAdmins;
+    QGroupBox *groupBox_3;
+    QGridLayout *gridLayout_2;
+    QPushButton *showRooms;
+    QPushButton *clearAllReserve;
+    QTextBrowser *textBrowserRooms;
+
+    void setupUi(QWidget *KAdminWidget)
+<span style = "background-color:#dfd">    {
+        if (KAdminWidget-&gt;objectName().isEmpty())
+            KAdminWidget-&gt;setObjectName(QStringLiteral("KAdminWidget"));
+        KAdminWidget-&gt;resize(1694, 1141);
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/images/logo.png"), QSize(), QIcon::Normal, QIcon::Off);
+        KAdminWidget-&gt;setWindowIcon(icon);
+        KAdminWidget-&gt;setStyleSheet(QLatin1String("QWidget#AdminWidget\n"</span>
+"{\n"
+"	background-color: rgb(215, 233, 233);\n"
+"}"));
+<span style = "background-color:#dfd">        verticalLayout = new QVBoxLayout(KAdminWidget);
+        verticalLayout-&gt;setSpacing(6);
+        verticalLayout-&gt;setContentsMargins(11, 11, 11, 11);
+        verticalLayout-&gt;setObjectName(QStringLiteral("verticalLayout"));
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout-&gt;setSpacing(6);
+        horizontalLayout-&gt;setObjectName(QStringLiteral("horizontalLayout"));
+        groupBox = new QGroupBox(KAdminWidget);
+        groupBox-&gt;setObjectName(QStringLiteral("groupBox"));
+        groupBox-&gt;setMinimumSize(QSize(981, 181));
+        groupBox-&gt;setMaximumSize(QSize(981, 181));
+        verticalLayout_2 = new QVBoxLayout(groupBox);
+        verticalLayout_2-&gt;setSpacing(6);
+        verticalLayout_2-&gt;setContentsMargins(11, 11, 11, 11);
+        verticalLayout_2-&gt;setObjectName(QStringLiteral("verticalLayout_2"));
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2-&gt;setSpacing(6);
+        horizontalLayout_2-&gt;setObjectName(QStringLiteral("horizontalLayout_2"));
+        formLayout = new QFormLayout();
+        formLayout-&gt;setSpacing(6);
+        formLayout-&gt;setObjectName(QStringLiteral("formLayout"));
+        label = new QLabel(groupBox);
+        label-&gt;setObjectName(QStringLiteral("label"));
+        label-&gt;setMinimumSize(QSize(0, 27));</span>
+
+<span style = "background-color:#dfd">        formLayout-&gt;setWidget(0, QFormLayout::LabelRole, label);</span>
+
+<span style = "background-color:#dfd">        userName = new QLineEdit(groupBox);
+        userName-&gt;setObjectName(QStringLiteral("userName"));
+        userName-&gt;setMinimumSize(QSize(0, 27));</span>
+
+<span style = "background-color:#dfd">        formLayout-&gt;setWidget(0, QFormLayout::FieldRole, userName);</span>
+
+<span style = "background-color:#dfd">        label_3 = new QLabel(groupBox);
+        label_3-&gt;setObjectName(QStringLiteral("label_3"));
+        label_3-&gt;setMinimumSize(QSize(0, 27));</span>
+
+<span style = "background-color:#dfd">        formLayout-&gt;setWidget(1, QFormLayout::LabelRole, label_3);</span>
+
+<span style = "background-color:#dfd">        password = new QLineEdit(groupBox);
+        password-&gt;setObjectName(QStringLiteral("password"));
+        password-&gt;setMinimumSize(QSize(0, 27));
+        password-&gt;setEchoMode(QLineEdit::PasswordEchoOnEdit);</span>
+
+<span style = "background-color:#dfd">        formLayout-&gt;setWidget(1, QFormLayout::FieldRole, password);</span>
+
+
+<span style = "background-color:#dfd">        horizontalLayout_2-&gt;addLayout(formLayout);</span>
+
+<span style = "background-color:#dfd">        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);</span>
+
+<span style = "background-color:#dfd">        horizontalLayout_2-&gt;addItem(horizontalSpacer);</span>
+
+<span style = "background-color:#dfd">        formLayout_2 = new QFormLayout();
+        formLayout_2-&gt;setSpacing(6);
+        formLayout_2-&gt;setObjectName(QStringLiteral("formLayout_2"));
+        name = new QLineEdit(groupBox);
+        name-&gt;setObjectName(QStringLiteral("name"));
+        name-&gt;setMinimumSize(QSize(0, 27));</span>
+
+<span style = "background-color:#dfd">        formLayout_2-&gt;setWidget(0, QFormLayout::FieldRole, name);</span>
+
+<span style = "background-color:#dfd">        label_4 = new QLabel(groupBox);
+        label_4-&gt;setObjectName(QStringLiteral("label_4"));</span>
+
+<span style = "background-color:#dfd">        formLayout_2-&gt;setWidget(1, QFormLayout::LabelRole, label_4);</span>
+
+<span style = "background-color:#dfd">        password_2 = new QLineEdit(groupBox);
+        password_2-&gt;setObjectName(QStringLiteral("password_2"));
+        password_2-&gt;setMinimumSize(QSize(0, 27));
+        password_2-&gt;setEchoMode(QLineEdit::PasswordEchoOnEdit);</span>
+
+<span style = "background-color:#dfd">        formLayout_2-&gt;setWidget(1, QFormLayout::FieldRole, password_2);</span>
+
+<span style = "background-color:#dfd">        label_2 = new QLabel(groupBox);
+        label_2-&gt;setObjectName(QStringLiteral("label_2"));
+        label_2-&gt;setMinimumSize(QSize(0, 27));</span>
+
+<span style = "background-color:#dfd">        formLayout_2-&gt;setWidget(0, QFormLayout::LabelRole, label_2);</span>
+
+
+<span style = "background-color:#dfd">        horizontalLayout_2-&gt;addLayout(formLayout_2);</span>
+
+<span style = "background-color:#dfd">        horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);</span>
+
+<span style = "background-color:#dfd">        horizontalLayout_2-&gt;addItem(horizontalSpacer_4);</span>
+
+
+<span style = "background-color:#dfd">        verticalLayout_2-&gt;addLayout(horizontalLayout_2);</span>
+
+<span style = "background-color:#dfd">        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3-&gt;setSpacing(6);
+        horizontalLayout_3-&gt;setObjectName(QStringLiteral("horizontalLayout_3"));
+        label_5 = new QLabel(groupBox);
+        label_5-&gt;setObjectName(QStringLiteral("label_5"));</span>
+
+<span style = "background-color:#dfd">        horizontalLayout_3-&gt;addWidget(label_5);</span>
+
+<span style = "background-color:#dfd">        comboBoxIdentity = new QComboBox(groupBox);
+        comboBoxIdentity-&gt;setObjectName(QStringLiteral("comboBoxIdentity"));
+        comboBoxIdentity-&gt;setMinimumSize(QSize(0, 43));</span>
+
+<span style = "background-color:#dfd">        horizontalLayout_3-&gt;addWidget(comboBoxIdentity);</span>
+
+<span style = "background-color:#dfd">        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Fixed, QSizePolicy::Minimum);</span>
+
+<span style = "background-color:#dfd">        horizontalLayout_3-&gt;addItem(horizontalSpacer_2);</span>
+
+<span style = "background-color:#dfd">        addPeople = new QPushButton(groupBox);
+        addPeople-&gt;setObjectName(QStringLiteral("addPeople"));</span>
+
+<span style = "background-color:#dfd">        horizontalLayout_3-&gt;addWidget(addPeople);</span>
+
+<span style = "background-color:#dfd">        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);</span>
+
+<span style = "background-color:#dfd">        horizontalLayout_3-&gt;addItem(horizontalSpacer_3);</span>
+
+
+<span style = "background-color:#dfd">        verticalLayout_2-&gt;addLayout(horizontalLayout_3);</span>
+
+
+<span style = "background-color:#dfd">        horizontalLayout-&gt;addWidget(groupBox);</span>
+
+<span style = "background-color:#dfd">        logoutButton = new QPushButton(KAdminWidget);
+        logoutButton-&gt;setObjectName(QStringLiteral("logoutButton"));</span>
+
+<span style = "background-color:#dfd">        horizontalLayout-&gt;addWidget(logoutButton);</span>
+
+<span style = "background-color:#dfd">        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);</span>
+
+<span style = "background-color:#dfd">        horizontalLayout-&gt;addItem(horizontalSpacer_5);</span>
+
+
+<span style = "background-color:#dfd">        verticalLayout-&gt;addLayout(horizontalLayout);</span>
+
+<span style = "background-color:#dfd">        groupBox_2 = new QGroupBox(KAdminWidget);
+        groupBox_2-&gt;setObjectName(QStringLiteral("groupBox_2"));
+        groupBox_2-&gt;setMinimumSize(QSize(0, 334));
+        gridLayout = new QGridLayout(groupBox_2);
+        gridLayout-&gt;setSpacing(6);
+        gridLayout-&gt;setContentsMargins(11, 11, 11, 11);
+        gridLayout-&gt;setObjectName(QStringLiteral("gridLayout"));
+        getCoders = new QPushButton(groupBox_2);
+        getCoders-&gt;setObjectName(QStringLiteral("getCoders"));</span>
+
+<span style = "background-color:#dfd">        gridLayout-&gt;addWidget(getCoders, 0, 0, 1, 1);</span>
+
+<span style = "background-color:#dfd">        textBrowserUsers = new QTextBrowser(groupBox_2);
+        textBrowserUsers-&gt;setObjectName(QStringLiteral("textBrowserUsers"));</span>
+
+<span style = "background-color:#dfd">        gridLayout-&gt;addWidget(textBrowserUsers, 1, 0, 1, 2);</span>
+
+<span style = "background-color:#dfd">        getAdmins = new QPushButton(groupBox_2);
+        getAdmins-&gt;setObjectName(QStringLiteral("getAdmins"));</span>
+
+<span style = "background-color:#dfd">        gridLayout-&gt;addWidget(getAdmins, 0, 1, 1, 1);</span>
+
+
+<span style = "background-color:#dfd">        verticalLayout-&gt;addWidget(groupBox_2);</span>
+
+<span style = "background-color:#dfd">        groupBox_3 = new QGroupBox(KAdminWidget);
+        groupBox_3-&gt;setObjectName(QStringLiteral("groupBox_3"));
+        groupBox_3-&gt;setMinimumSize(QSize(0, 500));
+        groupBox_3-&gt;setMaximumSize(QSize(16777215, 700));
+        gridLayout_2 = new QGridLayout(groupBox_3);
+        gridLayout_2-&gt;setSpacing(6);
+        gridLayout_2-&gt;setContentsMargins(11, 11, 11, 11);
+        gridLayout_2-&gt;setObjectName(QStringLiteral("gridLayout_2"));
+        showRooms = new QPushButton(groupBox_3);
+        showRooms-&gt;setObjectName(QStringLiteral("showRooms"));</span>
+
+<span style = "background-color:#dfd">        gridLayout_2-&gt;addWidget(showRooms, 0, 0, 1, 1);</span>
+
+<span style = "background-color:#dfd">        clearAllReserve = new QPushButton(groupBox_3);
+        clearAllReserve-&gt;setObjectName(QStringLiteral("clearAllReserve"));</span>
+
+<span style = "background-color:#dfd">        gridLayout_2-&gt;addWidget(clearAllReserve, 0, 1, 1, 1);</span>
+
+<span style = "background-color:#dfd">        textBrowserRooms = new QTextBrowser(groupBox_3);
+        textBrowserRooms-&gt;setObjectName(QStringLiteral("textBrowserRooms"));</span>
+
+<span style = "background-color:#dfd">        gridLayout_2-&gt;addWidget(textBrowserRooms, 2, 0, 1, 2);</span>
+
+
+<span style = "background-color:#dfd">        verticalLayout-&gt;addWidget(groupBox_3);</span>
+
+
+<span style = "background-color:#dfd">        retranslateUi(KAdminWidget);</span>
+
+<span style = "background-color:#dfd">        QMetaObject::connectSlotsByName(KAdminWidget);
+    } // setupUi</span>
+
+    void retranslateUi(QWidget *KAdminWidget)
+<span style = "background-color:#dfd">    {
+        KAdminWidget-&gt;setWindowTitle(QApplication::translate("KAdminWidget", "\347\263\273\347\273\237\347\256\241\347\220\206\345\221\230\347\225\214\351\235\242", Q_NULLPTR));
+        groupBox-&gt;setTitle(QApplication::translate("KAdminWidget", "\346\267\273\345\212\240\350\264\246\346\210\267", Q_NULLPTR));
+        label-&gt;setText(QApplication::translate("KAdminWidget", "\347\224\250\346\210\267\345\220\215", Q_NULLPTR));
+        label_3-&gt;setText(QApplication::translate("KAdminWidget", "\345\257\206  \347\240\201", Q_NULLPTR));
+        label_4-&gt;setText(QApplication::translate("KAdminWidget", "\347\241\256\350\256\244\345\257\206\347\240\201", Q_NULLPTR));
+        label_2-&gt;setText(QApplication::translate("KAdminWidget", "\345\247\223  \345\220\215", Q_NULLPTR));
+        label_5-&gt;setText(QApplication::translate("KAdminWidget", "\351\200\211\346\213\251\350\272\253\344\273\275", Q_NULLPTR));
+        comboBoxIdentity-&gt;clear();
+        comboBoxIdentity-&gt;insertItems(0, QStringList()</span>
+         &lt;&lt; QApplication::translate("KAdminWidget", "\350\241\214\346\224\277\344\272\272\345\221\230", Q_NULLPTR)
+         &lt;&lt; QApplication::translate("KAdminWidget", "\347\240\224\345\217\221\344\272\272\345\221\230", Q_NULLPTR)
+        );
+<span style = "background-color:#dfd">        addPeople-&gt;setText(QApplication::translate("KAdminWidget", "\346\267\273\345\212\240", Q_NULLPTR));
+        logoutButton-&gt;setText(QApplication::translate("KAdminWidget", "\346\263\250\351\224\200\347\231\273\345\275\225", Q_NULLPTR));
+        groupBox_2-&gt;setTitle(QApplication::translate("KAdminWidget", "\346\237\245\347\234\213\350\264\246\346\210\267", Q_NULLPTR));
+        getCoders-&gt;setText(QApplication::translate("KAdminWidget", "\346\237\245\347\234\213\346\211\200\346\234\211\347\240\224\345\217\221\344\272\272\345\221\230\350\264\246\346\210\267", Q_NULLPTR));
+        getAdmins-&gt;setText(QApplication::translate("KAdminWidget", "\346\237\245\347\234\213\346\211\200\346\234\211\350\241\214\346\224\277\344\272\272\345\221\230\350\264\246\346\210\267", Q_NULLPTR));
+        groupBox_3-&gt;setTitle(QApplication::translate("KAdminWidget", "\344\274\232\350\256\256\345\256\244\347\256\241\347\220\206", Q_NULLPTR));
+        showRooms-&gt;setText(QApplication::translate("KAdminWidget", "\346\230\276\347\244\272\346\211\200\346\234\211\344\274\232\350\256\256\345\256\244\344\277\241\346\201\257", Q_NULLPTR));
+        clearAllReserve-&gt;setText(QApplication::translate("KAdminWidget", "\346\270\205\347\251\272\346\211\200\346\234\211\351\242\204\347\272\246", Q_NULLPTR));
+    } // retranslateUi</span>
+
+};
+
+namespace Ui {
+    class KAdminWidget: public Ui_KAdminWidget {};
+} // namespace Ui
+
+QT_END_NAMESPACE
+
+#endif // UI_KADMINWIDGET_H</pre>
+        <hr />
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th align="center">
+                        <small>Generated by</small>
+                        <a href="https://github.com/OpenCppCoverage/OpenCppCoverage/releases">
+                            <strong>OpenCppCoverage (Version: 0.9.9.0)</strong>
+                        </a>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </body>
+</html>

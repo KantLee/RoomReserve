@@ -1,0 +1,1 @@
+OpenCppCoverage.exe --source D:\VS_2019_Proj\KRoomReserve\KRoomReserve D:\VS_2019_Proj\KRoomReserve\x64\Debug\KRoomReserveTest.exe
